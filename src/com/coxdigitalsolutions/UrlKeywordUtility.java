@@ -1,6 +1,5 @@
 package com.coxdigitalsolutions;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,33 +8,34 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
 /**
  * A URL keyword utility class.
- * 
+ *
  * @author Joel Bondurant
  */
 public class UrlKeywordUtility {
-    
-    private final int MIN_KEYWORD_LENGTH = 3;
+
+    private final int MIN_KEYWORD_LENGTH = 3; // Thinking a and th aren't good keywords.
     private final Dictionary dictionary;
-    
+
     /**
      * Constructs an instance with dictionary loaded.
      */
     public UrlKeywordUtility() {
         this.dictionary = Dictionary.getInstance();
     }
-    
+
     /**
-     * Decomposes a url string into a set of keywords based on dictionary lookups.
-     * 
-     * @param urlString Any url string. Note, for speed, the URL is not validated.
-     * @return 
+     * Decomposes a url string into a set of keywords based on dictionary
+     * lookups.
+     *
+     * @param urlString Any url string. Note, for speed, the URL is not
+     * validated.
+     * @return Set of keywords for the supplied url string.
      */
     public Set<String> urlToKeywords(String urlString) {
         Set<String> allKeywords = new HashSet<>();
-        urlString = urlString.replaceAll("http://", "");
+        urlString = urlString.replaceAll("http://", ""); // getting rid of boilerplate text
         urlString = urlString.replaceAll(".com", "");
         urlString = urlString.replaceAll("www.", "");
         urlString = urlString.replaceAll("index.html", "");
@@ -50,10 +50,11 @@ public class UrlKeywordUtility {
         }
         return allKeywords;
     }
-    
+
     /**
-     * Decomposes a url substring into a set of keywords based on dictionary lookups.
-     * 
+     * Decomposes a url substring into a set of keywords based on dictionary
+     * lookups.
+     *
      * @param urlChunk A portion of the url string to decompose.
      * @return A set of keywords of the string based on dictionary lookups.
      */
@@ -83,11 +84,12 @@ public class UrlKeywordUtility {
         }
         return keywords;
     }
-     
+
     /**
      * Reduces the full set of keywords to a minmal covering.
-     * 
-     * @param urlChunk The url substring from where the full keywords were derived.
+     *
+     * @param urlChunk The url substring from where the full keywords were
+     * derived.
      * @param fullKeywordSet Full keyword set to reduce.
      * @return A minimal set of keywords in the urlChunk.
      */
@@ -110,13 +112,13 @@ public class UrlKeywordUtility {
         }
         return fullKeywordSet;
     }
-    
-    
+
     /**
-     * Sort keywords by length then alphanumerically. 
-     * For helping to give priority to longer keywords.
+     * Sort keywords by length then alphanumerically. For helping to give
+     * priority to longer keywords.
      */
     public class KeywordComparator implements Comparator<String> {
+
         @Override
         public int compare(String s1, String s2) {
             int len1 = s1.length();
@@ -127,7 +129,5 @@ public class UrlKeywordUtility {
             return len2 - len1;
         }
     }
-
-
 
 }

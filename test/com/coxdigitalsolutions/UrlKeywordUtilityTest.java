@@ -15,9 +15,9 @@ import static org.junit.Assert.*;
  * @author Joel Bondurant
  */
 public class UrlKeywordUtilityTest {
-    
+
     private final UrlKeywordUtility urlUtil;
-    
+
     public UrlKeywordUtilityTest() {
         urlUtil = new UrlKeywordUtility();
     }
@@ -31,8 +31,8 @@ public class UrlKeywordUtilityTest {
         String urlString1 = "http://www.wfmz.com/lifestyle/travel/Investigators-get-voice-recorder-from-JetBlue-flight/-/133130/9758668/-/e0so4d/-/index.html";
         String urlString2 = "http://stumbleupon.com";
         String urlString3 = "http://fantastic.com";
-        Set<String> expResult1 = new HashSet<>(Arrays.asList("lifestyle","travel","investigators","get","voice","recorder","from","jetblue","flight"));
-        Set<String> expResult2 = new HashSet<>(Arrays.asList("stumble","upon"));
+        Set<String> expResult1 = new HashSet<>(Arrays.asList("lifestyle", "travel", "investigators", "get", "voice", "recorder", "from", "jetblue", "flight"));
+        Set<String> expResult2 = new HashSet<>(Arrays.asList("stumble", "upon"));
         Set<String> expResult3 = new HashSet<>(Arrays.asList("fantastic"));
         Set<String> result1 = urlUtil.urlToKeywords(urlString1);
         Set<String> result2 = urlUtil.urlToKeywords(urlString2);
@@ -50,5 +50,5 @@ public class UrlKeywordUtilityTest {
         assertEquals(expResult2, result2);
         assertEquals(expResult3, result3);
     }
-    
+
 }
