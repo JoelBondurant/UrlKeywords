@@ -33,7 +33,7 @@ public class UrlSource {
                         break;
                     }
                     if (!url.isEmpty()) {
-                        this.urlList.add(url.toLowerCase()); // making the url all lower case for faster comparisons.
+                        this.urlList.add(url);
                     }
                 }
         } catch (IOException ex) {
