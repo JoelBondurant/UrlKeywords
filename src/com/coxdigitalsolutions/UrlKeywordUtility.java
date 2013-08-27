@@ -27,7 +27,7 @@ public class UrlKeywordUtility {
         urlString = urlString.replaceAll("www.", "");
         List<String> urlChunks = Arrays.asList(urlString.split("[^a-zA-Z]"));
         for (String urlChunk : urlChunks) {
-            Set<String> keywordsFromString = reduceKeyWordSetV1(keywordsFromString(urlChunk));
+            Set<String> keywordsFromString = reduceKeyWordSet(keywordsFromString(urlChunk));
             allKeywords.addAll(keywordsFromString);
         }
         return allKeywords;
@@ -60,7 +60,7 @@ public class UrlKeywordUtility {
         return keywords;
     }
     
-    private Set<String> reduceKeyWordSetV1(Set<String> fullKeywordSet) {
+    private Set<String> reduceKeyWordSet(Set<String> fullKeywordSet) {
         Set<String> reducedSet = new HashSet<>(fullKeywordSet);
         for (String keywordA : fullKeywordSet) {
             for (String keywordB : fullKeywordSet) {
