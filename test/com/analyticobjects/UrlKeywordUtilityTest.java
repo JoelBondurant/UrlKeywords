@@ -1,4 +1,4 @@
-package com.coxdigitalsolutions;
+package com.analyticobjects;
 
 import com.analyticobjects.UrlKeywordUtility;
 import java.util.Arrays;
