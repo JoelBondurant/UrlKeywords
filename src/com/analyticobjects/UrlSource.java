@@ -1,4 +1,4 @@
-package com.coxdigitalsolutions;
+package com.analyticobjects;
 
 import java.io.BufferedReader;
 import java.io.IOException;

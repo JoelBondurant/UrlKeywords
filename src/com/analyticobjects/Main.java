@@ -1,4 +1,4 @@
-package com.coxdigitalsolutions;
+package com.analyticobjects;
 
 import java.io.FileWriter;
 import java.io.IOException;

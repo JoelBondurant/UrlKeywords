@@ -1,4 +1,4 @@
-package com.coxdigitalsolutions;
+package com.analyticobjects;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
