@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +24,7 @@ public class DictionarySource {
      * Constructor for the embedded american-english dictionary.
      */
     public DictionarySource() {
-        this.dictionaryWords = new ArrayList<>();
+        this.dictionaryWords = new LinkedList<>();
         this.dictionaryWords.add("jetblue"); // supplementing dictionary for passing testing.
         try (
                 InputStream dictStream = this.getClass().getResourceAsStream("american-english.txt");

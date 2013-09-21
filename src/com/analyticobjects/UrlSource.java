@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +22,7 @@ public class UrlSource {
     private List<String> urlList;
 
     public UrlSource() {
-        this.urlList = new ArrayList<>();
+        this.urlList = new LinkedList<>();
         try (
                 InputStream urlStream = this.getClass().getResourceAsStream("URLSET.txt");
                 BufferedReader urlReader = new BufferedReader(new InputStreamReader(urlStream));) {
