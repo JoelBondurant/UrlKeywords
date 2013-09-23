@@ -16,7 +16,7 @@ public class Dictionary {
     private final Set<String> words;
 
     private Dictionary() {
-        this.words = new LinkedHashSet<>();
+        this.words = new LinkedHashSet<>(); // not backed by slow concurrent crap.
         DictionarySource ds = new DictionarySource();
         for (String dictionaryWord : ds.getDictionaryWords()) {
             this.words.add(dictionaryWord);
@@ -30,7 +30,7 @@ public class Dictionary {
      * @return True if in dictionary, False otherwise. With error-free hashing.
      */
     public boolean isStringInDictionary(String str) {
-        return this.words.contains(str);
+        return this.words.contains(str); // threadsafe because words is effectively immutable.
     }
 
     /**

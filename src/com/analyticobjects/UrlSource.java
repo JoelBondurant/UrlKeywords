@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,13 +16,22 @@ import java.util.logging.Logger;
  * @author Joel Bondurant
  */
 public class UrlSource {
+    
+    private static UrlSource singletonInstance;
 
     /**
      * Primitive way of storing the data in memory for version one.
      */
     private List<String> urlList;
+    
+    static synchronized UrlSource getInstance() {
+        if (singletonInstance == null) {
+            singletonInstance = new UrlSource();
+        }
+        return singletonInstance;
+    }
 
-    public UrlSource() {
+    private UrlSource() {
         this.urlList = new LinkedList<>();
         try (
                 InputStream urlStream = this.getClass().getResourceAsStream("URLSET.txt");
@@ -41,8 +51,21 @@ public class UrlSource {
         }
     }
 
-    public List<String> getUrlList() {
-        return urlList;
+    List<String> getList() {
+        return Collections.unmodifiableList(urlList);
+    }
+    
+    List<List<String>> getListOfLists(int numberOfLists) {
+        int listSize = urlList.size() / numberOfLists;
+        List<List<String>> lists = new java.util.ArrayList<>();
+        for (int i = 0; i < urlList.size(); i += listSize) {
+            lists.add(urlList.subList(i, i + Math.min(listSize, urlList.size() - i)));
+        }
+        return lists;
+    }
+    
+    int size() {
+        return urlList.size();
     }
 
 }
