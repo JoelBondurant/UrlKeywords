@@ -76,7 +76,7 @@ public class Main {
             urlKeywordTasks.add(urlKeywordTask);
         }
         try {
-            List<Future<Object>> futures = executor.invokeAll(urlKeywordTasks, 5, TimeUnit.MINUTES);
+            executor.invokeAll(urlKeywordTasks, 5, TimeUnit.MINUTES);
             List<Runnable> unfinished = executor.shutdownNow();
             if (!unfinished.isEmpty()) {
                 throw new InterruptedException();
