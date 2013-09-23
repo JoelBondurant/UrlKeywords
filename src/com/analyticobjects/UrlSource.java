@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,8 +57,8 @@ public class UrlSource {
     }
     
     List<List<String>> getListOfLists(int numberOfLists) {
-        int listSize = urlList.size() / numberOfLists;
-        List<List<String>> lists = new java.util.ArrayList<>();
+        List<List<String>> lists = new ArrayList<>();
+        int listSize = urlList.size() / numberOfLists + 1;
         for (int i = 0; i < urlList.size(); i += listSize) {
             lists.add(urlList.subList(i, i + Math.min(listSize, urlList.size() - i)));
         }
