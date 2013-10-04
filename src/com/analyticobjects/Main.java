@@ -3,7 +3,6 @@ package com.analyticobjects;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -11,7 +10,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +27,7 @@ public class Main {
     private final UrlSource urlSource;
     
     Main() {
-        this.urlKeywordMap = new ConcurrentHashMap<>(UrlSource.getInstance().size());
+        this.urlKeywordMap = new ConcurrentHashMap<>(UrlSource.getInstance().size(), 0.75f, Runtime.getRuntime().availableProcessors());
         this.urlUtil = new UrlKeywordUtility();
         this.urlSource = UrlSource.getInstance();
     }
@@ -82,7 +80,7 @@ public class Main {
                 throw new InterruptedException();
             }
         } catch (InterruptedException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, ex.getLocalizedMessage(), ex);
         } 
         // single-threaded write out...
         try (
@@ -98,7 +96,7 @@ public class Main {
                writer.append("\n");
             }
         } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, ex.getLocalizedMessage(), ex);
         }
     }
     
